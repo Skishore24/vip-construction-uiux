@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+
+
+@theme {
+    --color-primary: #1A1F2E;
+    /* NAVY BLUE */
+    --color-secondary: #F5A623;
+    /* GOLDEN */
+    --color-surface: #F8F8F8;
+    /* BACKGROUND SLATE */
+
+
+    --color-text-primary: #1A1F2E;
+    /* NAVY BLUE */
+    --color-text-secondary: #F5A623;
+    /* GOLDEN */
+    --color-text-muted: #aaa;
+    /* GREY */
+
+    --color-text-dark-muted: #666;
+
+
+    --color-gold-hover: #E09200;
+    /* GOLDEN HOVER */
+
+    --color-bg-black: #111111;
+    /* BG BLACK SHADE */
+
+
+    /* BORDER MOBILE NAV */
+    --color-mobile-nav: #2a2a2a;
+
+
+
+
+    /* CHANGING DEFAULT FONT */
+    --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+
+}
+
+
+
+/* MOBILE TOPBAR ANIMATION */
+@keyframes topbar-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.topbar-marquee {
+    animation: topbar-scroll 20s linear infinite;
+}
+
+
+
+@utility nav-link-underline {
+    @apply relative font-medium cursor-pointer text-white hover:text-gold-hover transition-colors duration-300 px-1 py-1;
+    @apply after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-gold-hover after:transition-transform after:duration-300 hover:after:scale-x-100;
+
+    &.active {
+        @apply text-gold-hover after:scale-x-100;
+    }
+}
+
+@utility home-container-header {
+    @apply text-center mb-10 lg:mb-12 lg:mb-14 mx-3 lg:mx-2;
+}
+
+
+@utility span-heading {
+    @apply inline-block uppercase text-secondary font-bold tracking-widest text-sm lg:text-lg mb-2;
+}
+
+
+@utility h2-heading {
+    @apply text-2xl md:text-3xl lg:text-4xl font-extrabold text-primary mb-4;
+}
+
+
+@utility divider {
+    @apply w-[150px] lg:w-3xs bg-secondary h-1 m-auto rounded;
+}
+
+
+@utility contact-input {
+    @apply w-full rounded-lg border border-gray-300 p-2 text-sm lg:p-4 outline-none transition-all duration-300 focus:border-secondary focus:ring-1 focus:ring-secondary;
+}
+
+/* BANK SCROLL */
+@keyframes bank-scroll {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+
+}
+
+.animate-bank-scroll {
+
+    animation: bank-scroll 70s linear infinite;
+
+}
+
+
+@keyframes contactPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+.contact-pulse {
+    animation: contactPulse 2.4s ease-in-out infinite;
+}
+
+.contact-pulse-delay {
+    animation: contactPulse 2.4s ease-in-out infinite;
+    animation-delay: 1.2s;
+}
+
+
+
+@keyframes glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 rgba(255, 193, 7, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 10px rgba(255, 193, 7, 0.9);
+    }
+}
+
+.animate-glow {
+    animation: glow 1.5s infinite;
+}
