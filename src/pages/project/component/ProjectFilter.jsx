@@ -9,6 +9,7 @@ import {
   Rocket,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const filters = [
   { name: "All Projects", icon: LayoutGrid },
@@ -81,33 +82,32 @@ const ProjectFilter = ({ activeFilter, setActiveFilter }) => {
           const active = activeFilter === filter.name;
 
           return (
-            <button
+            <motion.button
               key={filter.name}
               onClick={() => setActiveFilter(filter.name)}
               className={`
-                flex-shrink-0
-                flex
-                items-center
-                gap-2
-                px-5
-                py-3
-                rounded-full
-                border
-                font-medium
-                transition-all
-                duration-300
-
+                relative flex-shrink-0 flex items-center gap-2 px-5 py-3
+                rounded-full border font-medium transition-colors duration-300
                 ${
                   active
                     ? "bg-secondary text-white border-secondary shadow-lg"
-                    : "bg-white border-gray-200 text-text-primary hover:bg-secondary hover:text-white hover:border-secondary"
+                    : "bg-white border-gray-200 text-text-primary hover:border-secondary/50 hover:text-secondary"
                 }
               `}
+              whileTap={{ scale: 0.95 }}
             >
-              <Icon size={18} />
-
-              <span>{filter.name}</span>
-            </button>
+              {active && (
+                <motion.span
+                  layoutId="filter-bg"
+                  className="absolute inset-0 rounded-full bg-secondary"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                />
+              )}
+              <span className="relative z-10 flex items-center gap-2">
+                <Icon size={16} />
+                {filter.name}
+              </span>
+            </motion.button>
           );
         })}
       </div>

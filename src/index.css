@@ -1,47 +1,47 @@
 @import "tailwindcss";
 
-
-
 @theme {
     --color-primary: #1A1F2E;
     /* NAVY BLUE */
     --color-secondary: #F5A623;
-    /* GOLDEN */
-    --color-surface: #F8F8F8;
-    /* BACKGROUND SLATE */
+    /* GOLDEN AMBER */
+    --color-surface: #F7F8FA;
+    /* NEAR-WHITE BACKGROUND */
+    --color-charcoal: #1C1F26;
+    /* BODY TEXT */
+    --color-steel: #8A95A3;
+    /* MUTED DIVIDER */
 
 
     --color-text-primary: #1A1F2E;
-    /* NAVY BLUE */
     --color-text-secondary: #F5A623;
-    /* GOLDEN */
     --color-text-muted: #aaa;
-    /* GREY */
-
     --color-text-dark-muted: #666;
-
-
     --color-gold-hover: #E09200;
-    /* GOLDEN HOVER */
 
     --color-bg-black: #111111;
-    /* BG BLACK SHADE */
-
-
-    /* BORDER MOBILE NAV */
     --color-mobile-nav: #2a2a2a;
-
-
-
 
     /* CHANGING DEFAULT FONT */
     --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
-
 }
 
+/* ============================================================
+   GLOBAL BASE
+   ============================================================ */
+html {
+    scroll-behavior: smooth;
+}
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
-/* MOBILE TOPBAR ANIMATION */
+/* ============================================================
+   MOBILE TOPBAR ANIMATION
+   ============================================================ */
 @keyframes topbar-scroll {
     from {
         transform: translateX(0);
@@ -56,44 +56,100 @@
     animation: topbar-scroll 20s linear infinite;
 }
 
+/* ============================================================
+   KEN BURNS — Hero background subtle zoom
+   ============================================================ */
+@keyframes kenBurns {
+    0% {
+        transform: scale(1);
+    }
 
-
-@utility nav-link-underline {
-    @apply relative font-medium cursor-pointer text-white hover:text-gold-hover transition-colors duration-300 px-1 py-1;
-    @apply after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-center after:scale-x-0 after:bg-gold-hover after:transition-transform after:duration-300 hover:after:scale-x-100;
-
-    &.active {
-        @apply text-gold-hover after:scale-x-100;
+    100% {
+        transform: scale(1.08);
     }
 }
 
-@utility home-container-header {
-    @apply text-center mb-10 lg:mb-12 lg:mb-14 mx-3 lg:mx-2;
+.ken-burns {
+    animation: kenBurns 28s ease-in-out infinite alternate;
+    will-change: transform;
 }
 
+/* ============================================================
+   CLIP-PATH REVEAL — for image reveals
+   ============================================================ */
+@keyframes clipReveal {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+
+    to {
+        clip-path: inset(0 0% 0 0);
+    }
+}
+
+/* ============================================================
+   NAV LINK UNDERLINE — sliding active indicator
+   ============================================================ */
+@utility nav-link-underline {
+    @apply relative font-semibold cursor-pointer text-white/80 hover:text-white transition-colors duration-300 px-1 py-1 text-sm tracking-wide;
+    @apply after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-secondary after:transition-transform after:duration-300 hover:after:scale-x-100;
+
+    &.active {
+        @apply text-secondary after:scale-x-100;
+    }
+}
+
+/* ============================================================
+   SECTION HEADING UTILITIES
+   ============================================================ */
+@utility home-container-header {
+    @apply text-center mb-10 lg:mb-16 mx-3 lg:mx-2;
+}
 
 @utility span-heading {
-    @apply inline-block uppercase text-secondary font-bold tracking-widest text-sm lg:text-lg mb-2;
+    @apply inline-block uppercase text-secondary font-bold tracking-[0.2em] text-xs lg:text-sm mb-3;
 }
-
 
 @utility h2-heading {
-    @apply text-2xl md:text-3xl lg:text-4xl font-extrabold text-primary mb-4;
+    @apply text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary mb-4 tracking-tight leading-[1.1];
 }
-
 
 @utility divider {
-    @apply w-[150px] lg:w-3xs bg-secondary h-1 m-auto rounded;
+    @apply w-[60px] lg:w-[80px] bg-secondary h-[3px] m-auto rounded-full;
 }
 
-
+/* ============================================================
+   CONTACT INPUT
+   ============================================================ */
 @utility contact-input {
-    @apply w-full rounded-lg border border-gray-300 p-2 text-sm lg:p-4 outline-none transition-all duration-300 focus:border-secondary focus:ring-1 focus:ring-secondary;
+    @apply w-full rounded-lg border border-gray-300 p-3 text-sm lg:p-4 outline-none transition-all duration-300 focus:border-secondary focus:ring-2 focus:ring-secondary/20 bg-white;
 }
 
-/* BANK SCROLL */
-@keyframes bank-scroll {
+/* ============================================================
+   FILL-SWEEP BUTTON — amber sweeps left to right on hover
+   ============================================================ */
+@utility btn-fill-sweep {
+    @apply relative overflow-hidden isolate font-bold transition-colors duration-300;
+}
 
+.btn-fill-sweep::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #E09200;
+    transform: translateX(-101%);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
+}
+
+.btn-fill-sweep:hover::before {
+    transform: translateX(0);
+}
+
+/* ============================================================
+   BANK SCROLL
+   ============================================================ */
+@keyframes bank-scroll {
     from {
         transform: translateX(0);
     }
@@ -101,16 +157,15 @@
     to {
         transform: translateX(-50%);
     }
-
 }
 
 .animate-bank-scroll {
-
     animation: bank-scroll 70s linear infinite;
-
 }
 
-
+/* ============================================================
+   FLOATING CONTACT ANIMATIONS
+   ============================================================ */
 @keyframes contactPulse {
 
     0%,
@@ -132,8 +187,6 @@
     animation-delay: 1.2s;
 }
 
-
-
 @keyframes glow {
 
     0%,
@@ -148,4 +201,64 @@
 
 .animate-glow {
     animation: glow 1.5s infinite;
+}
+
+/* ============================================================
+   EDGE FADE MASKS — for bank scroll / carousels
+   ============================================================ */
+.fade-edges {
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+    );
+}
+
+/* ============================================================
+   SECTION PADDING — generous vertical rhythm
+   ============================================================ */
+@utility section-pad {
+    @apply py-20 lg:py-28;
+}
+
+/* ============================================================
+   LINK HOVER — underline expands left to right
+   ============================================================ */
+@utility link-hover {
+    @apply relative;
+    @apply after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100;
+}
+
+/* ============================================================
+   PREFERS-REDUCED-MOTION — global override
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .ken-burns {
+        animation: none;
+    }
+
+    .topbar-marquee {
+        animation: none;
+    }
+
+    .animate-bank-scroll {
+        animation: none;
+    }
 }

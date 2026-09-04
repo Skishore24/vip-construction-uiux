@@ -5,8 +5,9 @@ import {
   FaUserTie,
   FaKey,
 } from "react-icons/fa";
-
 import { AiOutlineSafetyCertificate } from 'react-icons/ai';
+import ScrollReveal from "../../../components/animations/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "../../../components/animations/StaggerContainer";
 
 const steps = [
   {
@@ -55,23 +56,21 @@ const steps = [
 
 export default function ProcessSteps() {
   return (
-    <section className="relative bg-white py-15 overflow-hidden">
+    <section className="relative bg-white py-20 lg:py-28 overflow-hidden">
       {/* Decorative ambient glows */}
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#F5A623]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[#1A1F2E]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 relative">
         {/* Heading */}
-        <div className="text-center mb-8">
+        <ScrollReveal className="text-center mb-12">
           <span className="span-heading">How We Work</span>
-
           <h2 className="h2-heading mt-3">Our Construction Process</h2>
-
-          <p className="mt-5 text-gray-600 max-w-3xl mx-auto leading-8">
+          <p className="mt-4 text-slate-500 max-w-2xl mx-auto leading-relaxed">
             A clear, six-step process from first conversation to final handover
             — so you always know what happens next.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Flow container */}
         <div className="relative mt-7 lg:mt-20">
@@ -92,9 +91,9 @@ export default function ProcessSteps() {
             />
           </svg>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6" stagger={0.08}>
             {steps.map((step, index) => (
-              <div
+              <StaggerItem
                 key={step.id}
                 className={`relative group ${
                   index % 2 === 1 ? "lg:mt-16" : ""
@@ -124,9 +123,9 @@ export default function ProcessSteps() {
                     {step.description}
                   </p>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </div>
     </section>

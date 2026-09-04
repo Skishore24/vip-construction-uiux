@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import heroImage from "../images/hero.webp";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   Compass,
@@ -8,116 +9,148 @@ import {
   Building2,
 } from "lucide-react";
 
+const ease = [0.22, 1, 0.36, 1];
+const item = (delay) => ({
+  initial: { opacity: 0, y: 28 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.7, delay, ease } },
+});
+
+const highlights = [
+  { icon: ShieldCheck, label: "ISO Standard", sub: "Certified QA" },
+  { icon: Building2, label: "100+ Sites", sub: "Handed Over" },
+  { icon: Award, label: "10-Year", sub: "Warranty" },
+];
+
 export default function AboutHero() {
   return (
     <section
       id="home"
-      className="relative py-10 sm:py-14 lg:py-16 bg-[#0F172A] text-white overflow-hidden"
+      className="relative py-24 sm:py-28 lg:py-36 bg-[#0F172A] text-white overflow-hidden"
     >
-      {/* Background Subtle Pattern */}
+      {/* Background Dot Pattern */}
       <div
-        className="absolute inset-0 opacity-[0.13] pointer-events-none"
+        className="absolute inset-0 opacity-[0.10] pointer-events-none"
         style={{
           backgroundImage: `radial-gradient(#F5A623 1px, transparent 1px)`,
-          backgroundSize: `24px 24px`,
+          backgroundSize: `28px 28px`,
+        }}
+      />
+
+      {/* Amber radial glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 50% 50% at 80% 50%, rgba(245,166,35,0.07) 0%, transparent 70%)",
         }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-10 items-center">
-          {/* Left Column Text Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-12 items-center">
+          {/* Left Column */}
           <div className="lg:col-span-7 w-full text-left">
-            {/* Category Tag */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] sm:text-xs font-medium uppercase tracking-wider text-slate-300 mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F5A623]" />
-              <span>ABOUT VIP CONSTRUCTION • EST. 2019</span>
-            </div>
+            {/* Eyebrow Tag */}
+            <motion.div
+              variants={item(0)}
+              initial="initial"
+              animate="animate"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold uppercase tracking-[0.18em] text-secondary mb-6"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
+              About VIP Construction · Est. 2019
+            </motion.div>
 
-            {/* Compact H1 Heading */}
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-white mb-4">
-              Real Experience,<br className="hidden sm:inline" />
-              <span className="text-[#F5A623]">Honest Building</span>
-            </h1>
+            {/* H1 */}
+            <motion.h1
+              variants={item(0.15)}
+              initial="initial"
+              animate="animate"
+              className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.07] text-white mb-6"
+            >
+              Real Experience,{" "}
+              <span className="text-secondary">Honest Building</span>
+            </motion.h1>
 
-            {/* Compact Paragraph */}
-            <p className="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed max-w-xl mb-6">
-              Our founder worked at L&T and TATA Construction before starting VIP Construction in 2019 — bringing that same discipline and precision to every home and building we construct across Tamil Nadu.
-            </p>
+            {/* Description */}
+            <motion.p
+              variants={item(0.3)}
+              initial="initial"
+              animate="animate"
+              className="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed max-w-xl mb-8"
+            >
+              Our founder worked at L&T and TATA Construction before starting VIP
+              Construction in 2019 — bringing that same discipline and precision to every
+              home and building we construct across Tamil Nadu.
+            </motion.p>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 mb-8">
+            <motion.div
+              variants={item(0.45)}
+              initial="initial"
+              animate="animate"
+              className="flex flex-wrap items-center gap-4 mb-10"
+            >
               <Link
                 to="/project"
-                className="h-11 px-5 rounded-md bg-secondary w-full md:w-auto text-white font-bold text-xs sm:text-sm inline-flex items-center justify-center gap-2 hover:bg-[#e0941f] hover:scale-[1.02] hover:shadow-lg hover:shadow-[#F5A623]/25 active:scale-[0.98] transition-all duration-300 group"
+                className="btn-fill-sweep h-12 px-6 rounded-lg bg-secondary w-full md:w-auto text-white font-bold text-sm inline-flex items-center justify-center gap-2 transition-colors duration-300 group"
               >
-                <Compass className="w-4 h-4" />
-                <span>Explore Projects</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <span className="relative z-10 flex items-center gap-2">
+                  <Compass className="w-4 h-4" />
+                  Explore Projects
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
               </Link>
-            </div>
+            </motion.div>
 
             {/* Feature Highlights */}
-            <div className="hidden pt-4 border-t border-white/10 md:grid grid-cols-3 gap-2 sm:gap-4">
-              <div className="flex items-center gap-2 p-1.5">
-                <ShieldCheck className="text-secondary" size={30} />
-
-                <div>
-                  <p className="text-md font-bold text-white leading-none">
-                    ISO Standard
-                  </p>
-                  <p className="text-xs text-slate-400 mt-0.5">Certified QA</p>
+            <motion.div
+              variants={item(0.6)}
+              initial="initial"
+              animate="animate"
+              className="hidden pt-6 border-t border-white/10 md:grid grid-cols-3 gap-4"
+            >
+              {highlights.map(({ icon: Icon, label, sub }) => (
+                <div key={label} className="flex items-center gap-3 p-2">
+                  <Icon className="text-secondary flex-shrink-0" size={28} />
+                  <div>
+                    <p className="text-sm font-bold text-white leading-none">{label}</p>
+                    <p className="text-xs text-slate-400 mt-0.5">{sub}</p>
+                  </div>
                 </div>
-              </div>
-
-              <div className="flex items-center gap-2 p-1.5">
-                <Building2 className="text-secondary" size={30} />
-
-                <div>
-                  <p className="text-md font-bold text-white leading-none">
-                    100+ Sites
-                  </p>
-                  <p className="text-xs text-slate-400 mt-0.5">Handed Over</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2 p-1.5">
-                <Award className="text-secondary" size={30} />
-
-                <div>
-                  <p className="text-md font-bold text-white leading-none">
-                    10-Year
-                  </p>
-                  <p className="text-xs text-slate-400 mt-0.5">Warranty</p>
-                </div>
-              </div>
-            </div>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Right Column Image Card */}
-          <div className="lg:col-span-5 w-full mt-6 lg:mt-0">
-            <div className="group relative rounded-2xl overflow-hidden border border-white/10 shadow-xl hover:border-[#F5A623]/50 hover:shadow-2xl hover:shadow-[#F5A623]/10 transition-all duration-500 cursor-pointer">
+          {/* Right Column Image */}
+          <motion.div
+            className="lg:col-span-5 w-full mt-10 lg:mt-0"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.35, ease }}
+          >
+            <div className="group relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl hover:border-secondary/30 hover:shadow-secondary/10 hover:shadow-2xl transition-all duration-500 cursor-pointer">
               <img
                 src={heroImage}
                 alt="VIP Construction Services"
-                className="w-full aspect-video sm:aspect-[4/3] object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="w-full aspect-video sm:aspect-[4/3] object-cover rounded-2xl group-hover:scale-[1.04] transition-transform duration-700 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/80 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/80 via-transparent to-transparent" />
 
-              <div className="absolute bottom-1 md:bottom-3 left-3 right-3 p-1 md:p-3.5 rounded-xl bg-[#0F172A]/85 group-hover:bg-[#0F172A]/95 backdrop-blur-md border border-white/10 group-hover:border-[#F5A623]/40 flex items-center gap-3 transition-all duration-300 transform group-hover:-translate-y-1 group-hover:shadow-lg">
-                <div className="w-9 h-9 rounded-lg bg-[#F5A623]/20 border border-[#F5A623]/40 text-[#F5A623] group-hover:bg-[#F5A623] group-hover:text-[#0F172A] flex items-center justify-center flex-shrink-0 transition-all duration-300">
-                  <Building2 className="w-4 h-4" />
+              <div className="absolute bottom-3 left-3 right-3 p-3.5 rounded-xl bg-[#0F172A]/90 backdrop-blur-md border border-white/10 group-hover:border-secondary/40 flex items-center gap-3 transition-all duration-400 group-hover:-translate-y-0.5">
+                <div className="w-10 h-10 rounded-lg bg-secondary/15 border border-secondary/30 text-secondary group-hover:bg-secondary group-hover:text-primary flex items-center justify-center flex-shrink-0 transition-all duration-300">
+                  <Building2 className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-xs md:text-sm font-bold text-white group-hover:text-[#F5A623] transition-colors">
+                  <p className="text-sm font-bold text-white group-hover:text-secondary transition-colors">
                     VIP Construction Services
                   </p>
-                  <p className="text-[10px] md:text-[11px] text-slate-300">
+                  <p className="text-[11px] text-slate-400">
                     Turnkey & Commercial Execution
                   </p>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

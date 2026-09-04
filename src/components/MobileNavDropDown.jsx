@@ -1,57 +1,74 @@
 import { NavLink } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
+const navItems = [
+  { to: "/", label: "Home", end: true },
+  { to: "/project", label: "Project" },
+  { to: "/service", label: "Service" },
+  { to: "/about-us", label: "About Us" },
+  { to: "/contact", label: "Contact Us" },
+];
+
+const menuVariants = {
+  hidden: { opacity: 0, height: 0 },
+  visible: {
+    opacity: 1,
+    height: "auto",
+    transition: {
+      duration: 0.3,
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.06,
+      delayChildren: 0.05,
+    },
+  },
+  exit: {
+    opacity: 0,
+    height: 0,
+    transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const linkVariants = {
+  hidden: { opacity: 0, x: -16 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+  },
+  exit: { opacity: 0, x: -16 },
+};
 
 export function MobileNavDropDown({ closeMenu, isMenuOpen }) {
   return (
-    <div
-      className={`lg:hidden absolute top-full left-0 w-full bg-primary shadow-lg border-t border-slate-100 transition-all duration-300 ease-in-out
-          ${
-            isMenuOpen
-              ? "opacity-100 translate-y-0 visible"
-              : "opacity-0 -translate-y-2 invisible pointer-events-none"
-          }
-        `}
-    >
-      <ul className="flex flex-col font-poppins px-5 py-3">
-        <li>
-          <NavLink to="/" end onClick={closeMenu}
-            className={({ isActive }) => ` block py-3 border-b border-mobile-nav border-b-2  transition-colors duration-300 ${ isActive ? "text-gold-hover" : "text-white hover:text-gold-hover" } ` }
-          >
-            Home
-          </NavLink>
-        </li>
-
-        <li>
-          <NavLink to="/project" onClick={closeMenu} className={({ isActive }) => ` block py-3 border-b border-mobile-nav border-b-2 transition-colors duration-300 ${ isActive ? "text-gold-hover" : "text-white hover:text-gold-hover" } ` } >
-            Project
-          </NavLink>
-        </li>
-       
-        
-
-        <li>
-          <NavLink to="/service" onClick={closeMenu} className={({ isActive }) => ` block py-3 border-b border-mobile-nav border-b-2 transition-colors duration-300 ${ isActive ? "text-gold-hover" : "text-white hover:text-gold-hover" } ` }
-          >
-            Service
-          </NavLink>
-        </li>
-
-
-        <li>
-          <NavLink to="/about-us" onClick={closeMenu} className={({ isActive }) => ` block py-3 border-b border-mobile-nav border-b-2 transition-colors duration-300 ${ isActive ? "text-gold-hover" : "text-white hover:text-gold-hover" } ` } >
-            About Us
-          </NavLink>
-        </li>
-
-        
-    
-        <li>
-          <NavLink
-            to="/contact" onClick={closeMenu} className={({ isActive }) => ` block py-3 transition-colors duration-300 ${ isActive ? "text-gold-hover" : "text-white hover:text-gold-hover" } ` }
-          >
-            Contact Us
-          </NavLink>
-        </li>
-      </ul>
-    </div>
+    <AnimatePresence>
+      {isMenuOpen && (
+        <motion.div
+          variants={menuVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="lg:hidden overflow-hidden w-full bg-[#0F172A] border-t border-white/5 shadow-2xl"
+        >
+          <ul className="flex flex-col font-poppins px-5 py-2">
+            {navItems.map((item, index) => (
+              <motion.li key={item.to} variants={linkVariants}>
+                <NavLink
+                  to={item.to}
+                  end={item.end}
+                  onClick={closeMenu}
+                  className={({ isActive }) =>
+                    `block py-3.5 border-b border-white/5 text-sm font-medium transition-colors duration-200 ${
+                      isActive ? "text-secondary" : "text-white/80 hover:text-secondary"
+                    } ${index === navItems.length - 1 ? "border-b-0 pb-4" : ""}`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </motion.li>
+            ))}
+          </ul>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

@@ -8,9 +8,10 @@ import {
 import { Link } from "react-router-dom";
 import { WaterMark } from "./WaterMark";
 import { GiRotaryPhone } from "react-icons/gi";
-
 import SymbolLogo from "../assets/logo/SymbolLogo.webp";
 import NameLogo from "../assets/logo/NameLogo.webp";
+import ScrollReveal from "./animations/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "./animations/StaggerContainer";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -43,150 +44,140 @@ export default function Footer() {
   return (
     <footer className="relative bg-slate-950 text-slate-300">
       {/* Top */}
-      <div className="mx-auto max-w-7xl px-3 py-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid gap-10 lg:grid-cols-4">
-          {/* Company */}
-          <div>
-            {/* LOGO */}
-            <Link className="flex" to="/">
-              <div className="h-15 w-20 lg:w-25">
-                <img
-                  className="w-full h-full object-contain"
-                  src={SymbolLogo}
-                  alt="VIP CONSTRUCTION UDUMALPET"
-                />
-              </div>
 
-              <div className="h-15 w-45 lg:w-65">
-                <img
-                  className="w-full h-full object-contain"
-                  src={NameLogo}
-                  alt="VIP CONSTRUCTION UDUMALPET"
-                />
+          {/* Company */}
+          <ScrollReveal delay={0}>
+            <div>
+              {/* LOGO */}
+              <Link className="flex" to="/">
+                <div className="h-15 w-20 lg:w-25">
+                  <img className="w-full h-full object-contain" src={SymbolLogo} alt="VIP CONSTRUCTION UDUMALPET" />
+                </div>
+                <div className="h-15 w-45 lg:w-65">
+                  <img className="w-full h-full object-contain" src={NameLogo} alt="VIP CONSTRUCTION UDUMALPET" />
+                </div>
+              </Link>
+
+              <p className="mt-5 leading-7 text-slate-400 text-sm">
+                Building homes, offices, and landmark projects across Coimbatore,
+                Udumalpet, Tiruppur, Pollachi, Dharapuram, and Palani with quality and trust
+                since 2019.
+              </p>
+
+              {/* Social Icons */}
+              <div className="mt-7 flex gap-3">
+                {social.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={index}
+                      to={item.link}
+                      aria-label={item.label}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 transition-all duration-300 hover:bg-secondary hover:text-primary hover:scale-110 hover:rotate-6 text-base border border-slate-800 hover:border-secondary"
+                    >
+                      <Icon />
+                    </Link>
+                  );
+                })}
               </div>
-            </Link>
-            <p className="mt-4 leading-8 text-slate-400">
-              Building homes, offices, and landmark projects across Coimbatore,
-              Udumalpet, Tiruppur, Pollachi, Dharapuram, and Palani with quality and trust
-              since 2019.
-            </p>
-            {/* Social */}
-            <div className="mt-8 flex gap-4">
-              {social.map((item, index) => {
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={index}
-                    to={item.link}
-                    aria-label={item.label}
-                    target="_a"
-                    className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-900 transition duration-300 hover:bg-amber-500 hover:text-slate-900 text-lg border border-slate-800"
-                  >
-                    <Icon />
-                  </Link>
-                );
-              })}
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Quick Links */}
-          <div className="lg:text-center">
-            <h3 className="text-xl font-bold text-white mb-6">Quick Links</h3>
-            <ul className="space-y-4">
-              {quickLinks.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    to={item.path}
-                    className="transition hover:text-amber-400 duration-300"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ScrollReveal delay={0.08}>
+            <div className="lg:text-center">
+              <h3 className="text-base font-bold text-white mb-5 uppercase tracking-widest">Quick Links</h3>
+              {/* Animated amber divider */}
+              <div className="w-8 h-[2px] bg-secondary mb-5 lg:mx-auto" />
+              <ul className="space-y-3">
+                {quickLinks.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      to={item.path}
+                      className="link-hover text-sm transition-colors hover:text-secondary duration-300"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </ScrollReveal>
 
-          <div>
-            <h3 className="text-xl font-bold text-white">Branches</h3>
-
-            <div className="space-y-3 mt-3">
-              <div className="space-y-1">
-                <p className="font-bold text-white">
-                  <span className="text-secondary ml-1">Main Branch </span>-
-                  Udumalpet
-                </p>
-                <span>
-                  8, Durairam layout, S.V Mill (P.O), Udumalpet, Tiruppur Dist –
-                  642128.
-                </span>
-              </div>
-              <div className="space-y-1">
-                <p className="font-bold text-white">
-                  <span className="text-secondary ml-1">Sub Office </span>
-                  - Coimbatore
-                </p>
-                <span>
-                  No: 46 Srinagar, KK nagar, Ganapathi, Coimbatore – 641006.
-                </span>
+          {/* Branches */}
+          <ScrollReveal delay={0.16}>
+            <div>
+              <h3 className="text-base font-bold text-white mb-5 uppercase tracking-widest">Branches</h3>
+              <div className="w-8 h-[2px] bg-secondary mb-5" />
+              <div className="space-y-5 text-sm">
+                <div className="space-y-1">
+                  <p className="font-bold text-white">
+                    <span className="text-secondary">Main Branch</span> · Udumalpet
+                  </p>
+                  <span className="text-slate-400 leading-relaxed">
+                    8, Durairam layout, S.V Mill (P.O), Udumalpet, Tiruppur Dist – 642128.
+                  </span>
+                </div>
+                <div className="space-y-1">
+                  <p className="font-bold text-white">
+                    <span className="text-secondary">Sub Office</span> · Coimbatore
+                  </p>
+                  <span className="text-slate-400 leading-relaxed">
+                    No: 46 Srinagar, KK nagar, Ganapathi, Coimbatore – 641006.
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Contact */}
-          <div>
-            <h3 className="text-xl font-bold text-white mb-6">Contact Us</h3>
-            <div className="space-y-5">
-              <div className="flex gap-4 items-center">
-                <FaPhoneAlt className="text-amber-400 text-lg flex-shrink-0" />
-                <span>
-                  <Link
-                    to="tel:+919080273030"
-                    className="hover:text-amber-400 transition"
-                  >
-                    +91 9080273030
+          <ScrollReveal delay={0.24}>
+            <div>
+              <h3 className="text-base font-bold text-white mb-5 uppercase tracking-widest">Contact Us</h3>
+              <div className="w-8 h-[2px] bg-secondary mb-5" />
+              <div className="space-y-4 text-sm">
+                <div className="flex gap-3 items-center group">
+                  <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-secondary/10 border border-secondary/20 flex items-center justify-center group-hover:bg-secondary group-hover:border-secondary transition-all duration-300">
+                    <FaPhoneAlt className="text-secondary group-hover:text-primary transition-colors" />
+                  </div>
+                  <Link to="tel:+919080273030" className="hover:text-secondary transition-colors">
+                    +91 90802 73030
                   </Link>
-                </span>
-              </div>
-              <div className="flex gap-4 items-center">
-                <GiRotaryPhone
-                  size={25}
-                  className="text-amber-400 text-lg flex-shrink-0"
-                />
-                <span>
-                  <Link
-                    to="tel:+919344432923"
-                    className="hover:text-amber-400 transition"
-                  >
-                    +91 9344432923
+                </div>
+                <div className="flex gap-3 items-center group">
+                  <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-secondary/10 border border-secondary/20 flex items-center justify-center group-hover:bg-secondary group-hover:border-secondary transition-all duration-300">
+                    <GiRotaryPhone size={20} className="text-secondary group-hover:text-primary transition-colors" />
+                  </div>
+                  <Link to="tel:+919344432923" className="hover:text-secondary transition-colors">
+                    +91 93444 32923
                   </Link>
-                </span>
-              </div>
-              <div className="flex gap-4 items-center">
-                <FaEnvelope className="text-amber-400 text-lg flex-shrink-0" />
-                <span>
-                  <Link
-                    to="mailto:vipconstruction.14@gmail.com"
-                    className="hover:text-amber-400 transition min-w-0 break-all"
-                  >
+                </div>
+                <div className="flex gap-3 items-center group">
+                  <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-secondary/10 border border-secondary/20 flex items-center justify-center group-hover:bg-secondary group-hover:border-secondary transition-all duration-300">
+                    <FaEnvelope className="text-secondary group-hover:text-primary transition-colors" />
+                  </div>
+                  <Link to="mailto:vipconstruction.14@gmail.com" className="hover:text-secondary transition-colors break-all">
                     vipconstruction.14@gmail.com
                   </Link>
-                </span>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
 
       {/* MIDDLE WATERMARK */}
-
       <WaterMark />
 
       {/* Bottom */}
       <div className="border-t border-slate-900 bg-slate-950/50">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-4 px-6 py-3 md:flex-row">
-          <p className="text-slate-500 text-sm text-center">
-            © {year} VIP Construction. All Rights Reserved. | Designed with
-            excellence in Tamil Nadu.
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-4 px-6 py-4 md:flex-row">
+          <p className="text-slate-500 text-xs text-center">
+            © {year} VIP Construction. All Rights Reserved. | Designed with excellence in Tamil Nadu.
           </p>
         </div>
       </div>

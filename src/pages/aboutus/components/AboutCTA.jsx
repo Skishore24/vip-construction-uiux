@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, CalendarDays } from "lucide-react";
+import ScrollReveal from "../../../components/animations/ScrollReveal";
 
 export default function AboutCTA() {
   return (
-    <section id="contact-cta" className="py-10 sm:py-14 lg:py-16 bg-[#0F172A] text-white relative overflow-hidden">
+    <section id="contact-cta" className="py-20 sm:py-24 lg:py-28 bg-[#0F172A] text-white relative overflow-hidden">
       
       {/* Background Subtle Pattern */}
       <div 
@@ -14,7 +15,7 @@ export default function AboutCTA() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <ScrollReveal>
         
         <div 
           className="bg-slate-900/80 border border-slate-800 hover:border-[#F5A623]/50 rounded-2xl p-5 sm:p-6 lg:p-8 text-left grid grid-cols-1 lg:grid-cols-12 gap-6 items-center shadow-xl hover:shadow-2xl hover:shadow-[#F5A623]/10 transition-all duration-500 relative overflow-hidden group"
@@ -50,7 +51,7 @@ export default function AboutCTA() {
 
         </div>
 
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

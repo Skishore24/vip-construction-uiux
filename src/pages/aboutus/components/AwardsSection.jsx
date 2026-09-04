@@ -1,5 +1,7 @@
 import { awardsList } from "../data/aboutData";
 import { Trophy, Award, Medal } from "lucide-react";
+import ScrollReveal from "../../../components/animations/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "../../../components/animations/StaggerContainer";
 
 const awardIconMap = {
   Trophy,
@@ -11,33 +13,33 @@ export default function AwardsSection() {
   return (
     <section
       id="awards"
-      className="py-10 sm:py-14 lg:py-16 bg-white text-primary relative overflow-hidden"
+      className="py-20 sm:py-24 lg:py-28 bg-white text-primary relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="max-w-xl mb-8 lg:mb-10">
+        <ScrollReveal className="max-w-xl mb-10 lg:mb-14">
           <span className="span-heading">Honors & Recognitions</span>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight mb-2">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-3">
             Awards of{" "}
-            <span className="text-[#F5A623]">Engineering Excellence</span>
+            <span className="text-secondary">Engineering Excellence</span>
           </h2>
 
-          <p className="text-xs sm:text-sm lg:text-base text-slate-600 font-normal leading-relaxed">
+          <p className="text-sm lg:text-base text-slate-500 leading-relaxed">
             Recognized by civil engineering associations and state bodies for
             quality, safety, and honest construction practices.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* 1 Row Grid for Awards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 items-stretch">
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 lg:gap-6 items-stretch" stagger={0.1}>
           {awardsList.map((award) => {
             const IconComp = awardIconMap[award.iconName] || Trophy;
 
             return (
+              <StaggerItem key={award.id}>
               <div
-                key={award.id}
-                className="bg-[#0F172A] border border-slate-800 rounded-2xl p-3.5 sm:p-5 lg:p-6 shadow-md hover:border-[#F5A623]/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#F5A623]/10 transition-all duration-300 flex flex-col justify-between gap-3 group cursor-pointer"
+                className="bg-[#0F172A] border border-slate-800 rounded-2xl p-5 sm:p-6 lg:p-7 shadow-md hover:border-secondary/60 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-secondary/10 transition-all duration-400 flex flex-col justify-between gap-3 group cursor-pointer h-full"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
@@ -72,9 +74,10 @@ export default function AwardsSection() {
                   </span>
                 </div>
               </div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

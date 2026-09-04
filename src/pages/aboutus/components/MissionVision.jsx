@@ -1,28 +1,30 @@
 import { missionVision } from "../data/aboutData";
 import { Target, Eye, Check } from "lucide-react";
+import ScrollReveal from "../../../components/animations/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "../../../components/animations/StaggerContainer";
 
 export default function MissionVision() {
   return (
     <section
       id="mission-vision"
-      className="py-10 sm:py-14 lg:py-16 bg-slate-100 text-gray-600 relative overflow-hidden"
+      className="py-20 sm:py-24 lg:py-28 bg-slate-100 text-gray-600 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="max-w-2xl mb-8 lg:mb-10">
-          <span className="span-heading">GUIDING PRINCIPLES</span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0F172A] tracking-tight leading-tight mb-2">Our Mission & Vision</h2>
-
-          <p className="text-xs sm:text-sm lg:text-base text-slate-600 font-normal leading-relaxed">
+        <ScrollReveal className="max-w-2xl mb-10 lg:mb-14">
+          <span className="span-heading">Guiding Principles</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary tracking-tight leading-[1.1] mb-3">Our Mission & Vision</h2>
+          <p className="text-sm lg:text-base text-slate-500 leading-relaxed">
             The core values that guide every project we build, from the ground
             up.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* 2-Column Responsive Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-stretch">
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 lg:gap-8 items-stretch" stagger={0.12}>
           {/* Mission Card: bg-white */}
-          <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#F5A623]/50 transition-all duration-300 flex flex-col justify-between group cursor-pointer">
+          <StaggerItem>
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 lg:p-8 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-secondary/50 transition-all duration-400 flex flex-col justify-between group cursor-pointer h-full">
             <div>
               <div className="flex items-center justify-between mb-3">
                 <div className="w-8 h-8 rounded-lg bg-[#F5A623]/15 border border-[#F5A623]/30 text-[#F5A623] group-hover:bg-[#F5A623] group-hover:text-[#0F172A] flex items-center justify-center transition-all duration-300 group-hover:scale-110">
@@ -55,9 +57,10 @@ export default function MissionVision() {
               </div>
             </div>
           </div>
+          </StaggerItem>
 
-          {/* Vision Card: bg-[#F1F5F9] */}
-          <div className="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#F5A623]/50 transition-all duration-300 flex flex-col justify-between group cursor-pointer">
+          <StaggerItem>
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 lg:p-8 shadow-sm hover:shadow-xl hover:-translate-y-1.5 hover:border-secondary/50 transition-all duration-400 flex flex-col justify-between group cursor-pointer h-full">
             <div>
               <div className="flex items-center justify-between mb-3">
                 <div className="w-8 h-8 rounded-lg bg-[#F5A623]/15 bg-slate-100 border border-[#F5A623]/30 text-[#F5A623] group-hover:bg-[#F5A623] group-hover:text-[#0F172A] flex items-center justify-center transition-all duration-300 group-hover:scale-110">
@@ -90,7 +93,8 @@ export default function MissionVision() {
               </div>
             </div>
           </div>
-        </div>
+          </StaggerItem>
+        </StaggerContainer>
       </div>
     </section>
   );

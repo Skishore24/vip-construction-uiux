@@ -6,6 +6,8 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import ScrollReveal from "../../../components/animations/ScrollReveal";
+import { StaggerContainer, StaggerItem } from "../../../components/animations/StaggerContainer";
 
 const cards = [
   {
@@ -36,19 +38,17 @@ const cards = [
 
 export default function ContactInfo() {
   return (
-    <section className="bg-white py-15">
+    <section className="bg-white py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
         {/* Heading */}
-        <div className="text-center mb-12">
+        <ScrollReveal className="text-center mb-14">
           <span className="span-heading">Contact Information</span>
-
           <h2 className="h2-heading">We're Here To Help</h2>
-
-          <p className="mt-5 text-gray-600 max-w-3xl mx-auto leading-8">
+          <p className="mt-4 text-slate-500 max-w-2xl mx-auto leading-relaxed">
             Reach us anytime through the details below — we're happy to answer
             your questions and talk through your project.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Layout: featured call panel + 3 stacked cards */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -93,11 +93,10 @@ export default function ContactInfo() {
           </div>
 
           {/* Remaining cards */}
-          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <StaggerContainer className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-5" stagger={0.1}>
             {cards.map((item, index) => (
-              <div
-                key={index}
-                className={`group relative bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 flex flex-col hover:border-[#F5A623] hover:shadow-xl transition-all duration-300 ${
+              <StaggerItem key={index}
+                className={`group relative bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 flex flex-col hover:border-secondary hover:shadow-xl transition-all duration-300 ${
                   index === 0 ? "sm:col-span-2" : ""
                 }`}
               >
@@ -143,9 +142,9 @@ export default function ContactInfo() {
                   {item.action}
                   <FaArrowRight size={12} />
                 </Link>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </div>
     </section>
